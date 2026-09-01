@@ -1,10 +1,24 @@
 """
+####
 Proyecto Turbidez - Análisis y procesamiento de imágenes con OpenCV
-"""
+####
+import cv2
 
+imagen = cv2.imread("../imagenes/agua.jpg") # Este paso me dio error
+imagen = cv2.imread("D:/Doc/Python/Proyecto_Turbidez/imagenes/agua.jpg")
+
+cv2.imshow("Mi primera imagen con OpenCV", imagen)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 
 from pathlib import Path
 import cv2
+"""
+
+from pathlib import Path
+import cv2
+#import numpy as np
 
 # Obtener la carpeta donde está este programa
 carpeta_proyecto = Path(__file__).resolve().parent.parent
