@@ -37,6 +37,82 @@ if imagen is None:
     print("ERROR: No se pudo cargar la imagen.")
     print("Comprueba que el archivo exista y que la ruta sea correcta.")
     exit()
+
+
+# ==========================================
+# SELECCIÓN DE LA REGIÓN DE INTERÉS (ROI)
+# ==========================================
+
+print("\n===== SELECCIÓN DEL ROI =====")
+print("Selecciona con el mouse la zona que corresponde al agua.")
+print("Cuando termines, presiona ENTER.")
+
+# Seleccionar ROI manualmente
+x, y, ancho_roi, alto_roi = cv2.selectROI(
+    "Selecciona la zona del agua",
+    imagen,
+    showCrosshair=True,
+    fromCenter=False
+)
+
+# Cerrar la ventana de selección
+cv2.destroyAllWindows()
+
+# Recortar la región seleccionada
+roi = imagen[
+    y:y + alto_roi,
+    x:x + ancho_roi
+]
+
+print("\n===== INFORMACIÓN DEL ROI =====")
+print(f"Posición X: {x}")
+print(f"Posición Y: {y}")
+print(f"Ancho del ROI: {ancho_roi} píxeles")
+print(f"Alto del ROI: {alto_roi} píxeles")
+
+# Comprobar que el ROI tiene contenido
+if roi.size == 0:
+    print("ERROR: El ROI está vacío.")
+    exit()
+
+# Mostrar el ROI
+cv2.imshow("Region de interes - Agua", roi)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+# ==========================================
+# ANÁLISIS DE LOS CANALES DEL ROI
+# ==========================================
+
+# Separar los canales BGR del ROI
+roi_b, roi_g, roi_r = cv2.split(roi)
+
+print("\n===== INFORMACIÓN DE LOS CANALES DEL ROI =====")
+
+print(
+    f"Canal Azul (B): "
+    f"mínimo={roi_b.min()}, "
+    f"máximo={roi_b.max()}, "
+    f"promedio={roi_b.mean():.2f}"
+)
+
+print(
+    f"Canal Verde (G): "
+    f"mínimo={roi_g.min()}, "
+    f"máximo={roi_g.max()}, "
+    f"promedio={roi_g.mean():.2f}"
+)
+
+print(
+    f"Canal Rojo (R): "
+    f"mínimo={roi_r.min()}, "
+    f"máximo={roi_r.max()}, "
+    f"promedio={roi_r.mean():.2f}"
+)
+
+"""
+
 # Obtener información de la imagen
 alto, ancho, canales = imagen.shape
 
@@ -73,3 +149,60 @@ cv2.imshow("Canal Rojo", rojo)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+
+# ==========================================
+# SEPARAR LOS CANALES DE COLOR
+# ==========================================
+
+# Separar la imagen en sus tres canales
+canal_b, canal_g, canal_r = cv2.split(imagen)
+
+print("\n===== INFORMACIÓN DE LOS CANALES =====")
+
+print(f"Canal Azul (B): mínimo={canal_b.min()}, máximo={canal_b.max()}, promedio={canal_b.mean():.2f}")
+print(f"Canal Verde (G): mínimo={canal_g.min()}, máximo={canal_g.max()}, promedio={canal_g.mean():.2f}")
+print(f"Canal Rojo (R): mínimo={canal_r.min()}, máximo={canal_r.max()}, promedio={canal_r.mean():.2f}")
+
+# ==========================================
+# MOSTRAR LOS TRES CANALES
+# ==========================================
+
+cv2.imshow("Canal Azul - B", canal_b)
+cv2.imshow("Canal Verde - G", canal_g)
+cv2.imshow("Canal Rojo - R", canal_r)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+# ==========================================
+# HISTOGRAMAS DE LOS CANALES DE COLOR
+# ==========================================
+
+import matplotlib.pyplot as plt
+
+# Calcular histogramas
+hist_b = cv2.calcHist([canal_b], [0], None, [256], [0, 256])
+hist_g = cv2.calcHist([canal_g], [0], None, [256], [0, 256])
+hist_r = cv2.calcHist([canal_r], [0], None, [256], [0, 256])
+
+# Crear figura
+plt.figure(figsize=(10, 6))
+
+# Dibujar histogramas
+plt.plot(hist_b, label="Azul (B)")
+plt.plot(hist_g, label="Verde (G)")
+plt.plot(hist_r, label="Rojo (R)")
+
+# Configurar gráfico
+plt.title("Histograma de los canales de color")
+plt.xlabel("Intensidad del píxel")
+plt.ylabel("Cantidad de píxeles")
+plt.xlim([0, 256])
+plt.legend()
+plt.grid()
+
+# Mostrar gráfico
+plt.show()
+
+cv2.selectROI()
+"""
