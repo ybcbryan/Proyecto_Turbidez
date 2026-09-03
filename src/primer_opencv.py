@@ -18,7 +18,8 @@ import cv2
 
 from pathlib import Path
 import cv2
-#import numpy as np
+import numpy as np
+import matplotlib.pyplot as plt
 
 # Obtener la carpeta donde está este programa
 carpeta_proyecto = Path(__file__).resolve().parent.parent
@@ -110,6 +111,68 @@ print(
     f"máximo={roi_r.max()}, "
     f"promedio={roi_r.mean():.2f}"
 )
+
+# ==========================================
+# ESTADÍSTICAS DETALLADAS DEL ROI
+# ==========================================
+
+# ==========================================
+# ESTADÍSTICAS DETALLADAS DEL ROI
+# ==========================================
+
+
+
+print("\n===== ESTADÍSTICAS DETALLADAS DEL ROI =====")
+
+canales = {
+    "Azul (B)": roi_b,
+    "Verde (G)": roi_g,
+    "Rojo (R)": roi_r
+}
+
+for nombre, canal in canales.items():
+
+    media = np.mean(canal)
+    desviacion = np.std(canal)
+    minimo = np.min(canal)
+    maximo = np.max(canal)
+    mediana = np.median(canal)
+
+    print(f"\n{nombre}")
+    print(f"  Media:               {media:.2f}")
+    print(f"  Desviación estándar: {desviacion:.2f}")
+    print(f"  Mínimo:              {minimo}")
+    print(f"  Máximo:              {maximo}")
+    print(f"  Mediana:             {mediana:.2f}")
+
+# ==========================================
+# HISTOGRAMAS DE LOS CANALES DEL ROI
+# ==========================================
+
+
+# Calcular histogramas
+hist_roi_b = cv2.calcHist([roi_b], [0], None, [256], [0, 256])
+hist_roi_g = cv2.calcHist([roi_g], [0], None, [256], [0, 256])
+hist_roi_r = cv2.calcHist([roi_r], [0], None, [256], [0, 256])
+
+# Crear gráfico
+plt.figure(figsize=(10, 6))
+
+# Dibujar los histogramas
+plt.plot(hist_roi_b, label="Azul (B)")
+plt.plot(hist_roi_g, label="Verde (G)")
+plt.plot(hist_roi_r, label="Rojo (R)")
+
+# Configuración
+plt.title("Histograma de los canales BGR - ROI")
+plt.xlabel("Intensidad del píxel")
+plt.ylabel("Cantidad de píxeles")
+plt.xlim([0, 256])
+plt.legend()
+plt.grid()
+
+# Mostrar
+plt.show()
 
 """
 
