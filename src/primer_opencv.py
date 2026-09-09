@@ -112,9 +112,6 @@ print(
     f"promedio={roi_r.mean():.2f}"
 )
 
-# ==========================================
-# ESTADÍSTICAS DETALLADAS DEL ROI
-# ==========================================
 
 # ==========================================
 # ESTADÍSTICAS DETALLADAS DEL ROI
@@ -166,6 +163,79 @@ plt.plot(hist_roi_r, label="Rojo (R)")
 # Configuración
 plt.title("Histograma de los canales BGR - ROI")
 plt.xlabel("Intensidad del píxel")
+plt.ylabel("Cantidad de píxeles")
+plt.xlim([0, 256])
+plt.legend()
+plt.grid()
+
+# Mostrar
+plt.show()
+
+# ==========================================
+# CONVERSIÓN DEL ROI DE BGR A HSV
+# ==========================================
+
+# Convertir el ROI de BGR a HSV
+roi_hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
+
+# Separar los tres canales HSV
+canal_h, canal_s, canal_v = cv2.split(roi_hsv)
+
+print("\n===== ESTADÍSTICAS DE LOS CANALES HSV =====")
+
+print(
+    f"Canal H (Matiz): "
+    f"mínimo={canal_h.min()}, "
+    f"máximo={canal_h.max()}, "
+    f"promedio={canal_h.mean():.2f}"
+)
+
+print(
+    f"Canal S (Saturación): "
+    f"mínimo={canal_s.min()}, "
+    f"máximo={canal_s.max()}, "
+    f"promedio={canal_s.mean():.2f}"
+)
+
+print(
+    f"Canal V (Valor): "
+    f"mínimo={canal_v.min()}, "
+    f"máximo={canal_v.max()}, "
+    f"promedio={canal_v.mean():.2f}"
+)
+
+# ==========================================
+# VISUALIZAR LOS CANALES HSV
+# ==========================================
+
+cv2.imshow("Canal H - Matiz", canal_h)
+cv2.imshow("Canal S - Saturacion", canal_s)
+cv2.imshow("Canal V - Valor", canal_v)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+
+# ==========================================
+# HISTOGRAMAS DE LOS CANALES HSV - ROI
+# ==========================================
+
+# Calcular histogramas
+hist_h = cv2.calcHist([canal_h], [0], None, [180], [0, 180])
+hist_s = cv2.calcHist([canal_s], [0], None, [256], [0, 256])
+hist_v = cv2.calcHist([canal_v], [0], None, [256], [0, 256])
+
+# Crear gráfico
+plt.figure(figsize=(10, 6))
+
+# Dibujar histogramas
+plt.plot(hist_h, label="Matiz (H)")
+plt.plot(hist_s, label="Saturación (S)")
+plt.plot(hist_v, label="Valor (V)")
+
+# Configuración
+plt.title("Histograma de los canales HSV - ROI")
+plt.xlabel("Valor del canal")
 plt.ylabel("Cantidad de píxeles")
 plt.xlim([0, 256])
 plt.legend()
