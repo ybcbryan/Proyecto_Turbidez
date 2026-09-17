@@ -20,6 +20,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 
 # Obtener la carpeta donde está este programa
 carpeta_proyecto = Path(__file__).resolve().parent.parent
@@ -243,6 +244,56 @@ plt.grid()
 
 # Mostrar
 plt.show()
+
+# ==========================================
+# EXTRACCIÓN DE CARACTERÍSTICAS DEL ROI
+# ==========================================
+
+caracteristicas = {
+    "B_mean": np.mean(roi_b),
+    "G_mean": np.mean(roi_g),
+    "R_mean": np.mean(roi_r),
+
+    "B_std": np.std(roi_b),
+    "G_std": np.std(roi_g),
+    "R_std": np.std(roi_r),
+
+    "H_mean": np.mean(canal_h),
+    "S_mean": np.mean(canal_s),
+    "V_mean": np.mean(canal_v),
+
+    "H_std": np.std(canal_h),
+    "S_std": np.std(canal_s),
+    "V_std": np.std(canal_v)
+}
+
+print("\n===== VECTOR DE CARACTERÍSTICAS =====")
+
+for nombre, valor in caracteristicas.items():
+    print(f"{nombre}: {valor:.2f}")
+
+    # ==========================================
+# CREAR TABLA DE CARACTERÍSTICAS
+# ==========================================
+
+tabla = pd.DataFrame([caracteristicas])
+
+print("\n===== TABLA DE CARACTERÍSTICAS =====")
+print(tabla)
+
+# ==========================================
+# GUARDAR CARACTERÍSTICAS EN CSV
+# ==========================================
+
+ruta_csv = carpeta_proyecto / "caracteristicas.csv"
+
+tabla.to_csv(
+    ruta_csv,
+    index=False
+)
+
+print("\n===== DATASET GUARDADO =====")
+print(f"Archivo: {ruta_csv}")
 
 """
 
