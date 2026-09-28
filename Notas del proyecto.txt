@@ -1,0 +1,9 @@
+¿Qué significa el valor de nitidez?
+
+La varianza del Laplaciano es una medida sencilla de cuánto cambia la intensidad de los píxeles en una imagen:
+
+Valor alto: suele indicar más bordes o transiciones pronunciadas.
+
+Valor bajo: suele indicar una imagen más uniforme o con menos detalle.
+
+No significa que un valor alto sea automáticamente agua más turbia o más clara. Eso tendremos que comprobarlo comparando imágenes con sus etiquetas de NTU.
