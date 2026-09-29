@@ -4,7 +4,7 @@ from pathlib import Path
 # RUTA A LA CARPETA FORMAZINE/0
 # ============================================================
 
-carpeta = Path(r"C:\Users\Bryan\Desktop\Analisis de Imagenes\WaTur-Water-Turbidity-Dataset-main\Formazine\0")
+carpeta = Path(__file__).resolve().parents[1] / "WaTur-Water-Turbidity-Dataset-main" / "Formazine" / "0"
 
 # Buscar imágenes JPG
 imagenes = list(carpeta.glob("*.jpg"))
@@ -27,6 +27,10 @@ print("INSPECCIÓN DEL DATASET")
 print("========================================")
 
 print(f"Cantidad de imágenes: {len(numeros)}")
+
+if not numeros:
+    print(f"No se encontraron imágenes JPG en: {carpeta}")
+    raise SystemExit(0)
 
 print(f"Número menor: {numeros[0]}")
 print(f"Número mayor: {numeros[-1]}")

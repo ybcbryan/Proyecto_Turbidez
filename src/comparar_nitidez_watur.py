@@ -2,7 +2,7 @@ from pathlib import Path
 import cv2
 
 # Ruta de la carpeta Formazine
-carpeta_formazine = Path(r"C:\Users\Bryan\Desktop\Analisis de Imagenes\WaTur-Water-Turbidity-Dataset-main\Formazine")
+carpeta_formazine = Path(__file__).resolve().parents[1] / "WaTur-Water-Turbidity-Dataset-main" / "Formazine"
 
 # Niveles de turbidez disponibles
 niveles = ["0", "0.5", "1", "2.5", "4", "5", "7.5", "10", "40"]

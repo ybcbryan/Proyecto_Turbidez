@@ -6,7 +6,7 @@ import numpy as np
 # RUTA DE LA IMAGEN
 # ==========================================
 
-carpeta_watur = Path(r"C:\Users\Bryan\Desktop\Analisis de Imagenes\WaTur-Water-Turbidity-Dataset-main\Formazine\0")
+carpeta_watur = Path(__file__).resolve().parents[1] / "WaTur-Water-Turbidity-Dataset-main" / "Formazine" / "0"
 ruta_imagen = carpeta_watur / "0.jpg"
 
 imagen = cv2.imread(str(ruta_imagen))
