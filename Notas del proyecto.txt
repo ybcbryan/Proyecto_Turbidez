@@ -7,3 +7,49 @@ Valor alto: suele indicar más bordes o transiciones pronunciadas.
 Valor bajo: suele indicar una imagen más uniforme o con menos detalle.
 
 No significa que un valor alto sea automáticamente agua más turbia o más clara. Eso tendremos que comprobarlo comparando imágenes con sus etiquetas de NTU.
+
+
+OBSERVACION DE COMO SE COMPORTA LA MASCARA EN validar_mascaras.py
+
+O NTU -0.JPG, Limite:86, Superposición: bien al limite
+O NTU -452.JPG, Limite:87 Superposición: bien al limite
+O NTU -905.JPG, Limite:95, Superposición: bien al limite
+O NTU -1358.JPG, Limite:85, Superposición: bien al limite
+O NTU -1815.JPG, Limite:94, Superposición: bien al limite
+O.5 NTU -0.JPG, Limite:88, Superposición: bien al limite
+O.5 NTU -326.JPG, Limite:50, Superposición: mal la zona oscura de la imagen se encuentra en la parte superior y la mascara esta completamente dentro de la zona oscura, no esta delimitando
+O.5 NTU -652.JPG, Limite:28, Superposición: mal la zona oscura de la imagen se encuentra en la parte superior y la mascara esta completamente dentro de la zona oscura, no esta delimitando
+O.5 NTU -978.JPG, Limite:27, Superposición: mal la zona oscura de la imagen se encuentra en la parte superior y la mascara esta completamente dentro de la zona oscura, no esta delimitando
+O.5 NTU -1304.JPG, Limite:38, Superposición: mal la zona oscura de la imagen se encuentra en la parte superior y la mascara esta completamente dentro de la zona oscura, no esta delimitando
+1 NTU -0.JPG, Limite:82, Superposición: bien al limite
+1 NTU -295.JPG, Limite:76, Superposición: bien al limite
+1 NTU -591.JPG, Limite:76, Superposición: esta posee dos zonas oscura, una arriba mas pequeña y otra abajo, aun así la máscara se sitúa arriba ocupando por completo la zona oscura de arriba en ves de ubicarse en el centro entre las dos zonas oscuras que es donde se encuentra la zona clara
+1 NTU -1183.JPG, Limite:89, Superposición: bien al limite
+2 NTU -0.JPG, Limite:81, Superposición: bien al limite
+2.5 NTU -455.JPG, Limite:89, Superposición: bien al limite
+2.5 NTU -910.JPG, Limite:83, Superposición: bien al limite
+2.5 NTU -1365.JPG, Limite:87, Superposición: bien al limite
+2.5 NTU -1821.JPG, Limite:88, Superposición: bien al limite
+4 NTU -0.JPG, Limite:84, Superposición: bien al limite
+4 NTU -451.JPG, Limite:88, Superposición: bien al limite
+4 NTU -902.JPG, Limite:82, Superposición: bien al limite
+4 NTU -1353.JPG, Limite:89, Superposición: bien al limite
+4 NTU -1805.JPG, Limite:90, Superposición: bien al limite
+5 NTU -0.JPG, Limite:80, Superposición: bien al limite
+5 NTU -452.JPG, Limite:79, Superposición: bien al limite
+5 NTU -905.JPG, Limite:87, Superposición: bien al limite
+5 NTU -1358.JPG, Limite:86, Superposición: bien al limite
+5 NTU -1811.JPG, Limite:90, Superposición: bien al limite
+7.5 NTU -0.JPG, Limite:86, Superposición: bien al limite
+7.5 NTU -452.JPG, Limite:84, Superposición: bien al limite
+7.5 NTU -905.JPG, Limite:87, Superposición: bien al limite
+7.5 NTU -1358.JPG, Limite:82, Superposición: bien al limite
+7.5 NTU -1811.JPG, Limite:89, Superposición: bien al limite
+10 NTU -1816.JPG, Limite:83, Superposición: bien al limite
+10 NTU -2272.JPG, Limite:81, Superposición: bien al limite
+10 NTU -2729.JPG, Limite:88, Superposición: bien al limite
+10 NTU -3186.JPG, Limite:83, Superposición: bien al limite
+40 NTU -0.JPG, Limite:82, Superposición: bien al limite
+40 NTU -790.JPG, Limite:82, Superposición: bien al limite
+40 NTU -1185.JPG, Limite:93, Superposición: bien al limite
+40 NTU -1583.JPG, Limite:90, Superposición: bien al limite
