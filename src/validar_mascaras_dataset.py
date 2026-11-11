@@ -12,6 +12,12 @@ import numpy as np
 # C:\Proyecto\src\validar_mascaras_dataset.py
 # C:\Proyecto\WaTur-Water-Turbidity-Dataset-main\Formazine\...
 
+base = Path(__file__).resolve().parents[1] / "WaTur-Water-Turbidity-Dataset-main" / "Formazine"
+
+print("INICIO: validar_mascaras_dataset.py")
+
+from pathlib import Path
+
 BASE_PROYECTO = Path(__file__).resolve().parents[1]
 
 BASE_DATASET = (
@@ -722,3 +728,7 @@ def main():
         "No se debe rechazar una imagen únicamente por ser oscura "
         "sin revisar si la región de agua es realmente utilizable."
     )
+
+if __name__ == "__main__":
+    print("Se va a ejecutar la función main()")
+    main()
