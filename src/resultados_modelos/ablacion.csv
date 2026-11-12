@@ -1,0 +1,4 @@
+grupo,n_variables,MAE,RMSE,R2
+"Color e intensidad (media, cuantiles, cromaticidad)",21,2.0437687311291857,3.8847247565234326,0.8844587074790096
+"Variabilidad y textura (desviaciones, GLCM, gradiente)",17,2.0305908615060866,3.407012768703937,0.9111281465877942
+Todas las variables,38,1.291380540803315,2.4706238478980223,0.953266320768478
