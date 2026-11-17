@@ -242,6 +242,28 @@ def fig_error_por_nivel():
     guardar(fig, "09_error_por_nivel.png")
 
 
+def fig_generalizacion():
+    g = pd.read_csv(MODELOS / "generalizacion_relativas.csv")
+    pruebas = ["Formazine (tramo final, misma grabación)", "Formazine", "Kaolin", "Clear Plastic"]
+    etiquetas = ["Misma grabación\n(tramo final)", "Prueba en\nFormazine", "Prueba en\nKaolin", "Prueba en\nClear Plastic"]
+    series = [("absolutas", "Variables absolutas (38)", "#8ab8ec"), ("relativas", "Variables relativas (13)", AZUL),
+              ("ambas", "Ambas (51)", "#123f77")]
+    fig, ax = plt.subplots(figsize=(8.4, 4.4))
+    ancho = 0.26
+    for k, (clave, nombre, color) in enumerate(series):
+        v = [g[(g.variables == clave) & (g.prueba == t)].R2.iloc[0] for t in pruebas]
+        b = ax.bar(np.arange(4) + (k - 1) * (ancho + 0.02), v, ancho, color=color, label=nombre)
+        ax.bar_label(b, labels=[f"{x:.2f}" for x in v], fontsize=8.5, color=TEXTO2, padding=2)
+    ax.axhline(0, color=TEXTO2, linewidth=1)
+    ax.set_xticks(range(4), etiquetas)
+    ax.set_ylabel("R² (0 = predecir siempre el promedio)")
+    ax.set_ylim(-3.1, 1.3)
+    ax.grid(axis="x", visible=False)
+    ax.legend(frameon=False, fontsize=9, loc="lower left", ncol=1)
+    ax.set_title("Dentro y fuera de la grabación de entrenamiento", loc="left", color=TEXTO)
+    guardar(fig, "13_generalizacion.png")
+
+
 def main():
     df = pd.read_csv(CARAC)
     fig_roi_ejemplos()
@@ -253,6 +275,7 @@ def main():
     fig_real_vs_pred()
     fig_confusion()
     fig_error_por_nivel()
+    fig_generalizacion()
 
 
 if __name__ == "__main__":

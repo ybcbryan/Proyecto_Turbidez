@@ -1,0 +1,5 @@
+grupo,aceptadas,total,% aceptadas,motivos_rechazo
+Mismo montaje (tramo final),200,200,100.0,{}
+Subconjunto Text (otro protocolo),0,200,0.0,"{'AREA_PEQUENA': 172, 'CONTRASTE_BAJO': 25, 'AREA_GRANDE': 2, 'ESTADO_NO_SOPORTADO_CENTRO': 1}"
+imagenes/agua.jpg,0,1,0.0,{'ROI_MUY_PEQUENA': 1}
+"Sintéticas (gris, degradado, ruido, 2 zonas)",0,9,0.0,"{'FUERA_DE_DOMINIO': 3, 'ROI_MUY_PEQUENA': 3, 'CONTRASTE_BAJO': 2, 'SIN_DOS_CLASES': 1}"
